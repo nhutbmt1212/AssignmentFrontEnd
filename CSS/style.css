@@ -1,0 +1,108 @@
+.image-aside {
+  border-radius: 2px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 40px;
+}
+
+.grid-item {
+  text-align: center;
+}
+.text_category {
+  font-size: 13px;
+}
+
+@media only screen and (max-width: 767px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 20px;
+  }
+  .text_category {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    gap: 20px;
+  }
+  .text_category {
+    font-size: 9px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 20px;
+  }
+  .text_category {
+    font-size: 8px;
+  }
+}
+@media only screen and (max-width: 377px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 20px;
+  }
+  .text_category {
+    font-size: 10px;
+  }
+}
+
+/* card */
+#total_card_product {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(191px, 190px));
+  justify-content: center; /* Center the items horizontally */
+  align-items: center;
+}
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Adjust the z-index based on your layout */
+}
+
+.product-card {
+  width: 100%;
+  transition: transform 0.3s ease, border 0.3s ease; /* Simplified transition property */
+}
+
+#total_card_product .product-card:hover {
+  border: 2px solid red !important;
+  transform: translateY(-2px);
+}
+
+/* Reset z-index for elements after the sticky header */
+.sticky-header + .product-card:hover {
+  z-index: 0;
+}
+.sold_card {
+  font-size: 12px;
+  text-align: right;
+  margin-top: 2px;
+  color: grey;
+}
+.price_card {
+  font-size: 14px;
+  color: red;
+  font-weight: 500;
+}
+.truncate-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 190px;
+  max-height: 50px;
+  text-overflow: ellipsis;
+  padding-left: 7px;
+  padding-right: 7px;
+}
