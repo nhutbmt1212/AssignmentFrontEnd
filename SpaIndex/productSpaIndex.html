@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script> -->
+</head>
+
+<body>
+    <div class="container-fluid bg-white">
+        <!-- slide -->
+
+        <div class="container">
+            <div class="row pt-4">
+
+                <article>
+                    <div id="carouselExampleIndicators" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/Images/SlideImage1.jpg" class="d-block w-100 image-aside" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/Images/SlideImage2.jpg" class="d-block w-100 image-aside" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/Images/SlideImage3.jpg" class="d-block w-100 image-aside" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </article>
+
+
+
+            </div>
+            <!-- slide -->
+
+
+            <div class="grid-container mt-3">
+                <div class="grid-item">
+                    <img src="Images/categoriImage1.png" width="35px" alt="">
+                    <div class="text_category">Khung giờ săn sale</div>
+                </div>
+
+                <div class="grid-item">
+                    <img src="Images/categoriImage2.png" width="35px" alt="">
+                    <div class="text_category">Miễn phí ship - có shopee</div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://cf.shopee.vn/file/vn-50009109-11d9732a464d895d3699ca40431d0bfd_xhdpi" width="35px"
+                        alt="">
+                    <div class="text_category">Voucher giảm 1 triệu đồng</div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://cf.shopee.vn/file/vn-50009109-91399a1d3ed283d272b069fac5ca989c_xhdpi" width="35px"
+                        alt="">
+                    <div class="text_category">Shopee siêu rẻ</div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://cf.shopee.vn/file/vn-50009109-8a387d78a7ad954ec489d3ef9abd60b4_xhdpi" width="35px"
+                        alt="">
+                    <div class="text_category">Mã giảm giá</div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://cf.shopee.vn/file/vn-50009109-852300c407c5e79bf5dc1854aa0cfeef_xhdpi" width="35px"
+                        alt="">
+                    <div class="text_category">Hàng hiệu outlet giảm 50%</div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://cf.shopee.vn/file/9df57ba80ca225e67c08a8a0d8cc7b85_xhdpi" width="35px" alt="">
+                    <div class="text_category">Nạp thẻ và dịch vụ vé</div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://cf.shopee.vn/file/vn-50009109-fbc98cb6dcc514259ff797e1b63c5937_xhdpi" width="35px"
+                        alt="">
+                    <div class="text_category">Chọn số trúng 250.000 xu</div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://cf.shopee.vn/file/vn-50009109-29961f92098bc9153b88332110a91c87_xhdpi" width="35px"
+                        alt="">
+                    <div class="text_category">Quốc tế deal siêu rẻ</div>
+                </div>
+                <div class="grid-item">
+                    <img src="https://cf.shopee.vn/file/vn-50009109-1975fb1af4ae3c22878d04f6f440b6f9_xhdpi" width="35px"
+                        alt="">
+                    <div class="text_category">Bắt Trend - Giá sốc</div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid bg-secondly">
+        <div class="container mt-4 bg-white border-bottom border-4 border-danger position-sticky sticky-header "
+            style="top:131px">
+            <p class="text-center text-danger p-1 pt-3 fw-bold">GỢI Ý HÔM NAY</p>
+        </div>
+
+
+        <div class="container" ng-controller="CtrlProduct">
+            <div id="total_card_product" ng-click="OpenDetailProduct()" style="margin-top: 10px;">
+                <div class="product-card border bg-white">
+                    <div class="image-container">
+                        <img src="Images/imgProduct1.jpg" width="100%" alt="Product Image">
+                    </div>
+                    <div class="details-container">
+                        <!-- Category Title with Maximum 2 Lines and Ellipsis -->
+                        <div class="category-title  truncate-text">
+                            Giày thể thao chuyên dụng Giày thể thao chuyên dụng Giày thể thao chuyên dụng
+                        </div>
+
+                        <div class="Sale"></div>
+                        <div class="price-and-sold">
+                            <div class="row p-2 mt-2">
+                                <div class="col-sm-6">
+                                    <div class="price-info">
+                                        <div class="price_card">200.000đ</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="sold-info">
+                                        <div class="sold_card">Đã bán 1.1k</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card border bg-white">
+                    <div class="image-container">
+                        <img src="Images/imgProduct1.jpg" width="100%" alt="Product Image">
+                    </div>
+                    <div class="details-container">
+                        <!-- Category Title with Maximum 2 Lines and Ellipsis -->
+                        <div class="category-title  truncate-text">
+                            Giày thể thao chuyên dụng Giày thể thao chuyên dụng Giày thể thao chuyên dụng
+                        </div>
+
+                        <div class="Sale"></div>
+                        <div class="price-and-sold">
+                            <div class="row p-2 mt-2">
+                                <div class="col-sm-6">
+                                    <div class="price-info">
+                                        <div class="price_card">200.000đ</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="sold-info">
+                                        <div class="sold_card">Đã bán 1.1k</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card border bg-white">
+                    <div class="image-container">
+                        <img src="Images/imgProduct1.jpg" width="100%" alt="Product Image">
+                    </div>
+                    <div class="details-container">
+                        <!-- Category Title with Maximum 2 Lines and Ellipsis -->
+                        <div class="category-title  truncate-text">
+                            Giày thể thao chuyên dụng Giày thể thao chuyên dụng Giày thể thao chuyên dụng
+                        </div>
+
+                        <div class="Sale"></div>
+                        <div class="price-and-sold">
+                            <div class="row p-2 mt-2">
+                                <div class="col-sm-6">
+                                    <div class="price-info">
+                                        <div class="price_card">200.000đ</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="sold-info">
+                                        <div class="sold_card">Đã bán 1.1k</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card border bg-white">
+                    <div class="image-container">
+                        <img src="Images/imgProduct1.jpg" width="100%" alt="Product Image">
+                    </div>
+                    <div class="details-container">
+                        <!-- Category Title with Maximum 2 Lines and Ellipsis -->
+                        <div class="category-title  truncate-text">
+                            Giày thể thao chuyên dụng Giày thể thao chuyên dụng Giày thể thao chuyên dụng
+                        </div>
+
+                        <div class="Sale"></div>
+                        <div class="price-and-sold">
+                            <div class="row p-2 mt-2">
+                                <div class="col-sm-6">
+                                    <div class="price-info">
+                                        <div class="price_card">200.000đ</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="sold-info">
+                                        <div class="sold_card">Đã bán 1.1k</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card border bg-white">
+                    <div class="image-container">
+                        <img src="Images/imgProduct2.jpg" width="100%" alt="Product Image">
+                    </div>
+                    <div class="details-container">
+                        <!-- Category Title with Maximum 2 Lines and Ellipsis -->
+                        <div class="category-title  truncate-text">
+                            Giày thể thao chuyên dụng Giày thể thao chuyên dụng Giày thể thao chuyên dụng
+                        </div>
+
+                        <div class="Sale"></div>
+                        <div class="price-and-sold">
+                            <div class="row p-2 mt-2">
+                                <div class="col-sm-6">
+                                    <div class="price-info">
+                                        <div class="price_card">200.000đ</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="sold-info">
+                                        <div class="sold_card">Đã bán 1.1k</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+            <nav aria-label="Page navigation example" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
+        </div>
+
+
+    </div>
+</body>
+<script src="JS/index.js"></script>
+
+</html>
