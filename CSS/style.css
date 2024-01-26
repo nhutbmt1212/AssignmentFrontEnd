@@ -107,9 +107,10 @@
   padding-right: 7px;
 }
 
+/* header */
 .header {
   background: linear-gradient(-180deg, #f53d2d, #f63);
-  height: 160px;
+  height: 130px;
   width: 100%;
   position: fixed;
   color: #ffffff;
@@ -182,16 +183,19 @@
   width: 50px;
   height: 50px;
   margin-left: 40px;
+  margin-bottom: 30px;
 }
 
 .brand-img {
-  width: 45px;
-  height: 55px;
+  width: 35px;
+  height: 40px;
+  margin-bottom: 30px;
 }
 
 .text-brand {
   font-size: 30px;
   font-weight: 400;
+  margin-bottom: 25px;
 }
 
 .under-input span {
@@ -202,4 +206,24 @@
 .wrap-navbar-input {
   margin-left: 50px;
   width: 67%;
+}
+
+/* footer */
+.footer {
+  border-top: 3px solid #f53d2d;
+  top: 180px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.footer {
+  font-size: 12px;
+}
+
+.footer .title {
+  color: #666;
+}
+
+.footer .desc {
+  color: #888;
 }
