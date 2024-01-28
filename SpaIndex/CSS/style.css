@@ -1,0 +1,54 @@
+.title_product_detail {
+  padding-right: 50px;
+}
+.text_nameProduct_detail {
+  font-size: 22px;
+  font-weight: 400;
+}
+.startDanhGia {
+  padding-bottom: 2px;
+}
+.danhGia_detail_product {
+  padding-left: 20px;
+  border-right: 1px solid grey;
+  padding-bottom: 3px;
+}
+.soluong_danhgia_detail_product {
+  text-decoration: underline;
+  font-size: 17px;
+  font-weight: 600;
+}
+.title_danhgia_detail_product {
+  color: grey;
+  padding-right: 20px;
+}
+
+.daBan_detail_product {
+  padding-left: 20px;
+}
+.soluong_daBan_detail_product {
+  font-size: 17px;
+  font-weight: 600;
+}
+.title_daBan_detail_product {
+  color: grey;
+  padding-right: 20px;
+}
+#price_product_detail {
+  background-color: #eeedeb;
+  margin-top: 10px;
+  height: 80px;
+  padding: 16px;
+  border-radius: 3px;
+}
+.firstelement_price_prod {
+  font-size: 1em;
+  color: gray;
+  text-decoration-line: line-through;
+  margin-right: 10px;
+}
+.secondelement_price_prod {
+  color: #ee4d2d;
+  font-size: 1.875rem;
+  font-weight: 400;
+}
