@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Thêm sản phẩm</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Mã sản phẩm</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Mã sản phẩm</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Mã sản phẩm</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Mã sản phẩm</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Mã sản phẩm</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Mã sản phẩm</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Mã sản phẩm</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Mã sản phẩm</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Mã sản phẩm</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="" class="form-label">Mã sản phẩm</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Thêm sản phẩm</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#myModal">
+            Thêm sản phẩm
+        </button>
+        <table class="table table-bordered table-striped text-center">
+            <thead class="">
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Mã sản phẩm</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Ngày thêm</th>
+                    <th scope="col">Loại sản phẩm</th>
+                    <th scope="col">Hình ảnh</th>
+                    <th scope="col">Hãng</th>
+                    <th scope="col">Mô tả</th>
+                    <th scope="col">Giảm giá</th>
+                    <th scope="col">Tùy chọn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Điền dữ liệu vào đây -->
+                <tr>
+                    <th scope="row">1</th>
+                    <td>SP01</td>
+                    <td>Sản phẩm 1</td>
+                    <td>10</td>
+                    <td>2024-01-29</td>
+                    <td>Loại 1</td>
+                    <td><img src="path_to_image.jpg" alt="Hình ảnh sản phẩm 1" width="50" height="50"></td>
+                    <td>Hãng 1</td>
+                    <td>Mô tả sản phẩm 1</td>
+                    <td>10%</td>
+                    <td class="text-center">
+                        <div class="dropdown">
+                            <button type="button" class="border-0" data-bs-toggle="dropdown">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Sửa</a></li>
+                                <li><a class="dropdown-item" href="#">Xóa</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

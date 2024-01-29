@@ -17,3 +17,10 @@ app.controller('CtrlProduct', function ($scope, $location, $anchorScroll) {
         $anchorScroll();
     };
 });
+
+app.controller('BackToHomeWithLoGo', function ($scope, $location, $anchorScroll) {
+    $scope.BackHomeProduct = function () {
+        $location.path('/');
+        $anchorScroll();
+    };
+});

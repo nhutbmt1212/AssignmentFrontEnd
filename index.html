@@ -24,7 +24,7 @@
             <!-- navbar  -->
             <div class="navbar d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
-                    <span>Kênh người bán</span>
+                    <span><a href="Admin/index_admin.html">Kênh người bán</a></span>
                     <div class="hr1 mx-2"></div>
                     <span>Tải về máy</span>
                     <div class="hr1 mx-2"></div>
@@ -45,8 +45,8 @@
                 </div>
             </div>
             <!-- input search brand -->
-            <div class="d-flex align-items-center mt-2">
-                <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center mt-2" ng-controller="BackToHomeWithLoGo">
+                <div class="d-flex align-items-center" ng-click="BackHomeProduct()">
                     <img class="brand-img mr-0" src="assets/brand.png" alt="" />
                     <span class="text-brand">Shopee</span>
                 </div>
