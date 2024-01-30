@@ -4,6 +4,7 @@ const port = 3000;
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const multer = require('multer'); // Thêm thư viện multer
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -20,6 +21,27 @@ db.connect((err) => {
 app.use(cors());
 app.use(bodyParser.json());
 
+// Cấu hình multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads'); // Thư mục để lưu trữ hình ảnh
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname); // Tên tệp sau khi tải lên
+    }
+});
+
+const upload = multer({ storage: storage });
+app.post('/upload', upload.single('HinhAnh'), (req, res) => {
+    // Check if the file isn't uploaded
+    if (!req.file) {
+        return res.status(400).send('No file uploaded');
+    }
+
+    // Send file information as a response
+    res.send(req.file);
+});
+
 app.get('/', (req, res) => {
     res.send('Hello World!')
 });
@@ -33,8 +55,11 @@ app.get('/products', (req, res) => {
 });
 
 // Add a new product
-app.post('/products', (req, res) => {
+app.post('/products', upload.single('HinhAnh'), (req, res) => {
     const newProduct = req.body;
+    if (req.file) {
+        newProduct.HinhAnh = req.file.filename + Date.now; // Lưu tên tệp, không phải đối tượng tệp
+    }
     let sql = 'INSERT INTO SANPHAM SET ?';
     db.query(sql, newProduct, (err, result) => {
         if (err) throw err;
@@ -42,10 +67,13 @@ app.post('/products', (req, res) => {
     });
 });
 
+
+
 // Update a product
-app.put('/products/:id', (req, res) => {
+app.put('/products/:id', upload.single('HinhAnh'), (req, res) => { // Sử dụng multer ở đây
     const productId = req.params.id;
     const updatedProduct = req.body;
+    updatedProduct.HinhAnh = req.file.path; // Cập nhật đường dẫn của hình ảnh
     let sql = 'UPDATE SANPHAM SET ? WHERE MaSanPham = ?';
     db.query(sql, [updatedProduct, productId], (err, result) => {
         if (err) throw err;

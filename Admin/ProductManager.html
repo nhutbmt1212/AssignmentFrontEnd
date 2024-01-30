@@ -66,8 +66,10 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="" class="form-label">Hình ảnh</label>
-                            <input type="file" ng-model="HinhAnh" class="form-control">
+                            <input type="file" file-model="HinhAnh" class="form-control">
                         </div>
+
+
                         <div class="col-sm-6">
                             <label for="" class="form-label">Hãng </label>
                             <input type="text" ng-model="Hang" class="form-control">
@@ -84,7 +86,6 @@
                 </div>
 
                 <!-- Modal footer -->
-                <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal"
@@ -100,7 +101,7 @@
         <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#myModal">
             Thêm sản phẩm
         </button>
-        <table class="table table-bordered table-striped text-center">
+        <table class="table table-bordered table-striped text-center table-reponsive">
             <thead class="">
                 <tr>
                     <th scope="col">STT</th>
@@ -124,7 +125,8 @@
                     <td>{{product.SoLuong}}</td>
                     <td>{{product.NgayThem}}</td>
                     <td>{{product.LoaiSanPham}}</td>
-                    <td><img ng-src="{{product.HinhAnh}}" alt="Hình ảnh sản phẩm {{$index + 1}}" width="50" height="50">
+                    <td><img ng-src="{{'/uploads/' + product.HinhAnh}}" alt="Hình ảnh sản phẩm {{$index + 1}}"
+                            width="120">
                     </td>
                     <td>{{product.Hang}}</td>
                     <td>{{product.MoTa}}</td>

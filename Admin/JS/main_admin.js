@@ -29,8 +29,11 @@ app.factory('ProductService', function ($http) {
             });
         },
         addProduct: function (newProduct) {
+
             return $http.post('http://localhost:3000/products', newProduct).then(function (response) {
+
                 products.push(newProduct);
+
                 return products;
             });
         },
@@ -122,12 +125,39 @@ app.controller('ProductController', function ($scope, ProductService) {
     };
 
 });
+app.service('UploadService', ['$http', function ($http) {
+    this.uploadImage = function (image) {
+        var data = new FormData();
+        data.append('HinhAnh', image);
 
-app.controller('ThemSanPham', function ($scope, ProductService) {
+        $http.post('http://localhost:3000/upload', data, {
+            headers: { 'Content-Type': undefined },
+            transformRequest: angular.identity
+        });
+
+    };
+
+}]);
+
+app.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function () {
+                scope.$apply(function () {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
+
+app.controller('ThemSanPham', ['$scope', 'ProductService', 'UploadService', function ($scope, ProductService, UploadService) {
     $scope.SoLuong = 1;
     $scope.errorState = 0;
-
-    // Validation functions
     $scope.checkMaSanPham = function () {
         if (!$scope.MaSanPham) {
             return 1;
@@ -180,14 +210,16 @@ app.controller('ThemSanPham', function ($scope, ProductService) {
 
     $scope.ThemSanPhamFunction = function () {
 
-        var d = new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
+        var utcDate = new Date();
+        var vietnamDate = new Date(utcDate.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" }));
+
         var newProduct = {
             MaSanPham: $scope.MaSanPham,
             TenSanPham: $scope.TenSanPham,
             SoLuong: $scope.SoLuong,
-            NgayThem: d,
+            NgayThem: vietnamDate.toISOString(),
             LoaiSanPham: $scope.LoaiSanPham,
-            HinhAnh: $scope.HinhAnh,
+            HinhAnh: $scope.HinhAnh.name,
             Hang: $scope.Hang,
             MoTa: $scope.MoTa,
             GiamGia: $scope.GiamGia
@@ -195,5 +227,11 @@ app.controller('ThemSanPham', function ($scope, ProductService) {
         ProductService.addProduct(newProduct).then(function (products) {
             $scope.products = products;
         });
+        UploadService.uploadImage($scope.HinhAnh).then(function (response) {
+            console.log('Hình ảnh đã được tải lên thành công!');
+        }, function (error) {
+            console.log('Lỗi khi tải lên hình ảnh: ', error);
+        });
+
     };
-});
+}]);
