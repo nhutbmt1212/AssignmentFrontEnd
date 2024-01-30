@@ -35,7 +35,6 @@ app.factory('ProductService', function ($http) {
             });
         },
         updateProduct: function (updatedProduct) {
-            console.log(updatedProduct);
             return $http.put('http://localhost:3000/products/' + updatedProduct.MaSanPham, updatedProduct).then(function (response) {
                 var index = products.findIndex(function (product) {
                     return product.MaSanPham === updatedProduct.MaSanPham;
@@ -125,17 +124,60 @@ app.controller('ProductController', function ($scope, ProductService) {
 });
 
 app.controller('ThemSanPham', function ($scope, ProductService) {
-    $scope.checkInput = function () {
+    $scope.SoLuong = 1;
+    $scope.errorState = 0;
+
+    // Validation functions
+    $scope.checkMaSanPham = function () {
         if (!$scope.MaSanPham) {
-            $scope.errorState = 1;
-        } else if ($scope.MaSanPham.length != 6) {
-            $scope.errorState = 2;
+            return 1;
+        } else if ($scope.MaSanPham.length !== 6) {
+            return 2;
         } else if (!/^[a-zA-Z0-9]*$/.test($scope.MaSanPham)) {
-            $scope.errorState = 3;
+            return 3;
         } else {
-            $scope.errorState = 0;
+            return 0;
         }
-    }
+    };
+
+    $scope.checkTenSanPham = function () {
+        if (!$scope.TenSanPham) {
+            return 4;
+        } else if ($scope.TenSanPham.length > 100) {
+            return 5;
+        } else if (/[^\p{L}\s\p{P}]/u.test($scope.TenSanPham)) {
+            return 6;
+        } else if ($scope.TenSanPham.length < 2) {
+            return 7;
+        } else {
+            return 0;
+        }
+    };
+
+    $scope.checkSoLuong = function () {
+        return $scope.SoLuong < 1 ? 8 : 0;
+    };
+
+    $scope.checkLoaiSanPham = function () {
+        if (!$scope.LoaiSanPham) {
+            return 9;
+        } else if ($scope.LoaiSanPham.length > 100) {
+            return 10;
+        } else if (/[^\p{L}\s\p{P}]/u.test($scope.LoaiSanPham)) {
+            return 11;
+        } else if ($scope.LoaiSanPham.length < 2) {
+            return 12;
+        } else {
+            return 0;
+        }
+    };
+
+
+
+    $scope.checkInput = function () {
+        $scope.errorState = $scope.checkMaSanPham() || $scope.checkTenSanPham() || $scope.checkSoLuong() || $scope.checkLoaiSanPham();
+    };
+
     $scope.ThemSanPhamFunction = function () {
 
         var d = new Date().toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
@@ -155,5 +197,3 @@ app.controller('ThemSanPham', function ($scope, ProductService) {
         });
     };
 });
-
-
