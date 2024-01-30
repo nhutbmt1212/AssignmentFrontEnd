@@ -60,6 +60,7 @@ app.post('/products', upload.single('HinhAnh'), (req, res) => {
     if (req.file) {
         newProduct.HinhAnh = req.file.filename + Date.now; // Lưu tên tệp, không phải đối tượng tệp
     }
+
     let sql = 'INSERT INTO SANPHAM SET ?';
     db.query(sql, newProduct, (err, result) => {
         if (err) throw err;

@@ -123,7 +123,7 @@
                     <td>{{product.MaSanPham}}</td>
                     <td>{{product.TenSanPham}}</td>
                     <td>{{product.SoLuong}}</td>
-                    <td>{{product.NgayThem}}</td>
+                    <td>{{product.NgayThem.toString()}}</td>
                     <td>{{product.LoaiSanPham}}</td>
                     <td><img ng-src="{{'/uploads/' + product.HinhAnh}}" alt="Hình ảnh sản phẩm {{$index + 1}}"
                             width="120">
@@ -206,7 +206,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="" class="form-label">Hình ảnh</label>
-                                <input type="text" ng-model="HinhAnh" class="form-control">
+                                <input type="file" ng-model="HinhAnhFile" class="form-control">
                             </div>
                             <div class="col-sm-6">
                                 <label for="" class="form-label">Hãng </label>

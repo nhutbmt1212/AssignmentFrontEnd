@@ -1,5 +1,4 @@
 var app = angular.module("myapp", ["ngRoute"]);
-
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/Product", {
@@ -63,10 +62,7 @@ app.factory('ProductService', function ($http) {
 
 app.controller('ProductController', function ($scope, ProductService) {
     ProductService.getProducts().then(function (products) {
-        products.forEach(function (product) {
-            var date = new Date(product.NgayThem);
-            product.NgayThem = date.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" });
-        });
+
         $scope.products = products;
     });
 
@@ -92,7 +88,7 @@ app.controller('ProductController', function ($scope, ProductService) {
         $scope.SoLuong = product.SoLuong;
         $scope.NgayThem = ngayThemDate;
         $scope.LoaiSanPham = product.LoaiSanPham;
-        $scope.HinhAnh = product.HinhAnh;
+        $scope.HinhAnh = product.HinhAnhFile;
         $scope.Hang = product.Hang;
         $scope.MoTa = product.MoTa;
         $scope.GiamGia = product.GiamGia;
@@ -100,28 +96,29 @@ app.controller('ProductController', function ($scope, ProductService) {
     };
 
     $scope.SuaSanPhamFunction = function () {
-        var d = $scope.NgayThem.getFullYear() + '-' +
-            ('0' + ($scope.NgayThem.getMonth() + 1)).slice(-2) + '-' +
-            ('0' + $scope.NgayThem.getDate()).slice(-2) + ' ' +
-            ('0' + $scope.NgayThem.getHours()).slice(-2) + ':' +
-            ('0' + $scope.NgayThem.getMinutes()).slice(-2) + ':' +
-            ('0' + $scope.NgayThem.getSeconds()).slice(-2); console.log(d);
-        var updatedProduct = {
-            MaSanPham: $scope.MaSanPham,
-            TenSanPham: $scope.TenSanPham,
-            SoLuong: $scope.SoLuong,
-            NgayThem: d,
-            LoaiSanPham: $scope.LoaiSanPham,
-            HinhAnh: $scope.HinhAnh,
-            Hang: $scope.Hang,
-            MoTa: $scope.MoTa,
-            GiamGia: $scope.GiamGia
-        };
-        ProductService.updateProduct(updatedProduct).then(function () {
-            ProductService.getProducts().then(function (products) {
-                $scope.products = products;
-            });
-        });
+        console.log($scope.HinhAnh);
+        // var d = $scope.NgayThem.getFullYear() + '-' +
+        //     ('0' + ($scope.NgayThem.getMonth() + 1)).slice(-2) + '-' +
+        //     ('0' + $scope.NgayThem.getDate()).slice(-2) + ' ' +
+        //     ('0' + $scope.NgayThem.getHours()).slice(-2) + ':' +
+        //     ('0' + $scope.NgayThem.getMinutes()).slice(-2) + ':' +
+        //     ('0' + $scope.NgayThem.getSeconds()).slice(-2);
+        // var updatedProduct = {
+        //     MaSanPham: $scope.MaSanPham,
+        //     TenSanPham: $scope.TenSanPham,
+        //     SoLuong: $scope.SoLuong,
+        //     NgayThem: d,
+        //     LoaiSanPham: $scope.LoaiSanPham,
+        //     HinhAnh: $scope.HinhAnh,
+        //     Hang: $scope.Hang,
+        //     MoTa: $scope.MoTa,
+        //     GiamGia: $scope.GiamGia
+        // };
+        // ProductService.updateProduct(updatedProduct).then(function () {
+        //     ProductService.getProducts().then(function (products) {
+        //         $scope.products = products;
+        //     });
+        // });
     };
 
 });
@@ -210,14 +207,15 @@ app.controller('ThemSanPham', ['$scope', 'ProductService', 'UploadService', func
 
     $scope.ThemSanPhamFunction = function () {
 
-        var utcDate = new Date();
-        var vietnamDate = new Date(utcDate.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" }));
+
+        var now = new Date();
+        var NgayGioHienTai = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
 
         var newProduct = {
             MaSanPham: $scope.MaSanPham,
             TenSanPham: $scope.TenSanPham,
             SoLuong: $scope.SoLuong,
-            NgayThem: vietnamDate.toISOString(),
+            NgayThem: NgayGioHienTai,  // Use the current date and time
             LoaiSanPham: $scope.LoaiSanPham,
             HinhAnh: $scope.HinhAnh.name,
             Hang: $scope.Hang,
