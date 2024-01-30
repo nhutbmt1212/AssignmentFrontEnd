@@ -60,7 +60,7 @@ app.factory('ProductService', function ($http) {
     };
 });
 
-app.controller('ProductController', function ($scope, ProductService) {
+app.controller('ProductController', ['$scope', 'ProductService', 'UploadService', function ($scope, ProductService, UploadService) {
     ProductService.getProducts().then(function (products) {
 
         $scope.products = products;
@@ -88,40 +88,42 @@ app.controller('ProductController', function ($scope, ProductService) {
         $scope.SoLuong = product.SoLuong;
         $scope.NgayThem = ngayThemDate;
         $scope.LoaiSanPham = product.LoaiSanPham;
-        $scope.HinhAnh = product.HinhAnhFile;
+        $scope.HinhAnh = product.HinhAnh;
         $scope.Hang = product.Hang;
         $scope.MoTa = product.MoTa;
         $scope.GiamGia = product.GiamGia;
-
     };
 
     $scope.SuaSanPhamFunction = function () {
-        console.log($scope.HinhAnh);
-        // var d = $scope.NgayThem.getFullYear() + '-' +
-        //     ('0' + ($scope.NgayThem.getMonth() + 1)).slice(-2) + '-' +
-        //     ('0' + $scope.NgayThem.getDate()).slice(-2) + ' ' +
-        //     ('0' + $scope.NgayThem.getHours()).slice(-2) + ':' +
-        //     ('0' + $scope.NgayThem.getMinutes()).slice(-2) + ':' +
-        //     ('0' + $scope.NgayThem.getSeconds()).slice(-2);
-        // var updatedProduct = {
-        //     MaSanPham: $scope.MaSanPham,
-        //     TenSanPham: $scope.TenSanPham,
-        //     SoLuong: $scope.SoLuong,
-        //     NgayThem: d,
-        //     LoaiSanPham: $scope.LoaiSanPham,
-        //     HinhAnh: $scope.HinhAnh,
-        //     Hang: $scope.Hang,
-        //     MoTa: $scope.MoTa,
-        //     GiamGia: $scope.GiamGia
-        // };
-        // ProductService.updateProduct(updatedProduct).then(function () {
-        //     ProductService.getProducts().then(function (products) {
-        //         $scope.products = products;
-        //     });
-        // });
+        var now = $scope.NgayThem;
+        var NgayGioConvert = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+        var updatedProduct = {
+            MaSanPham: $scope.MaSanPham,
+            TenSanPham: $scope.TenSanPham,
+            SoLuong: $scope.SoLuong,
+            NgayThem: NgayGioConvert,
+            LoaiSanPham: $scope.LoaiSanPham,
+            HinhAnh: $scope.SuaHinhAnh ? $scope.SuaHinhAnh.name : $scope.HinhAnh,
+            Hang: $scope.Hang,
+            MoTa: $scope.MoTa,
+            GiamGia: $scope.GiamGia
+        };
+        ProductService.updateProduct(updatedProduct).then(function (products) {
+            $scope.products = products;
+        });
+
+        if ($scope.SuaHinhAnh) {
+            UploadService.uploadImage($scope.SuaHinhAnh.name).then(function (response) {
+                console.log('Hình ảnh đã được tải lên thành công!');
+            }, function (error) {
+                console.log('Lỗi khi tải lên hình ảnh: ', error);
+            });
+        }
+        console.log($scope.SuaHinhAnh);
     };
 
-});
+
+}]);
 app.service('UploadService', ['$http', function ($http) {
     this.uploadImage = function (image) {
         var data = new FormData();
@@ -215,7 +217,7 @@ app.controller('ThemSanPham', ['$scope', 'ProductService', 'UploadService', func
             MaSanPham: $scope.MaSanPham,
             TenSanPham: $scope.TenSanPham,
             SoLuong: $scope.SoLuong,
-            NgayThem: NgayGioHienTai,  // Use the current date and time
+            NgayThem: NgayGioHienTai,
             LoaiSanPham: $scope.LoaiSanPham,
             HinhAnh: $scope.HinhAnh.name,
             Hang: $scope.Hang,

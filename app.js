@@ -58,7 +58,7 @@ app.get('/products', (req, res) => {
 app.post('/products', upload.single('HinhAnh'), (req, res) => {
     const newProduct = req.body;
     if (req.file) {
-        newProduct.HinhAnh = req.file.filename + Date.now; // Lưu tên tệp, không phải đối tượng tệp
+        newProduct.HinhAnh = req.file.filename; // Lưu tên tệp, không phải đối tượng tệp
     }
 
     let sql = 'INSERT INTO SANPHAM SET ?';
@@ -71,16 +71,22 @@ app.post('/products', upload.single('HinhAnh'), (req, res) => {
 
 
 // Update a product
-app.put('/products/:id', upload.single('HinhAnh'), (req, res) => { // Sử dụng multer ở đây
+app.put('/products/:id', upload.single('HinhAnh'), (req, res) => {
     const productId = req.params.id;
     const updatedProduct = req.body;
-    updatedProduct.HinhAnh = req.file.path; // Cập nhật đường dẫn của hình ảnh
+
+    // Check if a file is uploaded before accessing req.file
+    if (req.file) {
+        updatedProduct.HinhAnh = req.file.path; // Cập nhật đường dẫn của hình ảnh
+    }
+
     let sql = 'UPDATE SANPHAM SET ? WHERE MaSanPham = ?';
     db.query(sql, [updatedProduct, productId], (err, result) => {
         if (err) throw err;
         res.send('Product updated successfully');
     });
 });
+
 
 // Delete a product
 app.delete('/products/:id', (req, res) => {
