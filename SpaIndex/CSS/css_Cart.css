@@ -57,3 +57,13 @@
     display: none !important;
   }
 }
+.btn_muahang {
+  background-color: #ee4d2d;
+  border: 0;
+  color: white;
+  height: 45px;
+}
+.text_thanhtien {
+  color: #ee4d2d;
+  font-size: 28px;
+}

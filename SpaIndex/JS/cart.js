@@ -1,10 +1,10 @@
 window.addEventListener('resize', function () {
-    var cartTitle = document.getElementById('cartTitle');
-    if (window.innerWidth <= 767) {
-        cartTitle.classList.remove('truncate-text');
-
-    } else {
-        cartTitle.classList.add('truncate-text');
-
-    }
+    var cartTitles = document.querySelectorAll('.cartTitle');
+    cartTitles.forEach(function (cartTitle) {
+        if (window.innerWidth <= 767) {
+            cartTitle.classList.remove('truncate-text');
+        } else {
+            cartTitle.classList.add('truncate-text');
+        }
+    });
 });
