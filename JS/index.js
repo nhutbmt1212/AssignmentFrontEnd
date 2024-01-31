@@ -7,6 +7,9 @@ app.config(function ($routeProvider) {
         })
         .when("/Detail", {
             templateUrl: "SpaIndex/productSpaDetail.html"
+        })
+        .when("/Cart", {
+            templateUrl: "SpaIndex/CartDetail.html"
         });
 
 });
@@ -21,6 +24,10 @@ app.controller('CtrlProduct', function ($scope, $location, $anchorScroll) {
 app.controller('BackToHomeWithLoGo', function ($scope, $location, $anchorScroll) {
     $scope.BackHomeProduct = function () {
         $location.path('/');
+        $anchorScroll();
+    };
+    $scope.OpenCart = function () {
+        $location.path('/Cart');
         $anchorScroll();
     };
 });

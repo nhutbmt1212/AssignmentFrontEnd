@@ -4,7 +4,7 @@ const port = 3000;
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const multer = require('multer'); // Thêm thư viện multer
+const multer = require('multer');
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -21,24 +21,21 @@ db.connect((err) => {
 app.use(cors());
 app.use(bodyParser.json());
 
-// Cấu hình multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads'); // Thư mục để lưu trữ hình ảnh
+        cb(null, './uploads');
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname); // Tên tệp sau khi tải lên
+        cb(null, file.originalname);
     }
 });
 
 const upload = multer({ storage: storage });
 app.post('/upload', upload.single('HinhAnh'), (req, res) => {
-    // Check if the file isn't uploaded
     if (!req.file) {
         return res.status(400).send('No file uploaded');
     }
 
-    // Send file information as a response
     res.send(req.file);
 });
 
@@ -54,11 +51,11 @@ app.get('/products', (req, res) => {
     });
 });
 
-// Add a new product
+
 app.post('/products', upload.single('HinhAnh'), (req, res) => {
     const newProduct = req.body;
     if (req.file) {
-        newProduct.HinhAnh = req.file.filename; // Lưu tên tệp, không phải đối tượng tệp
+        newProduct.HinhAnh = req.file.filename;
     }
 
     let sql = 'INSERT INTO SANPHAM SET ?';
@@ -70,14 +67,12 @@ app.post('/products', upload.single('HinhAnh'), (req, res) => {
 
 
 
-// Update a product
 app.put('/products/:id', upload.single('HinhAnh'), (req, res) => {
     const productId = req.params.id;
     const updatedProduct = req.body;
 
-    // Check if a file is uploaded before accessing req.file
     if (req.file) {
-        updatedProduct.HinhAnh = req.file.path; // Cập nhật đường dẫn của hình ảnh
+        updatedProduct.HinhAnh = req.file.path;
     }
 
     let sql = 'UPDATE SANPHAM SET ? WHERE MaSanPham = ?';
@@ -88,7 +83,6 @@ app.put('/products/:id', upload.single('HinhAnh'), (req, res) => {
 });
 
 
-// Delete a product
 app.delete('/products/:id', (req, res) => {
     const productId = req.params.id;
     let sql = 'DELETE FROM SANPHAM WHERE MaSanPham = ?';

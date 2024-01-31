@@ -2,17 +2,26 @@ var app = angular.module("myapp", ["ngRoute"]);
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/Product", {
+            title: "Quản lý sản phẩm",
             templateUrl: "ProductManager.html",
-            controller: "ProductController"
+            controller: "ProductController",
+
+
         })
         .when("/Category", {
+            title: "Quản lý danh mục",
             templateUrl: "CategoryManager.html",
         })
         .otherwise({
+            title: "Quản lý sản phẩm",
             redirectTo: "/Product"
         });
 });
-
+app.run(['$rootScope', function ($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+        $rootScope.title = current.$$route.title;
+    });
+}]);
 app.factory('ProductService', function ($http) {
     var products = [];
 
@@ -113,13 +122,13 @@ app.controller('ProductController', ['$scope', 'ProductService', 'UploadService'
         });
 
         if ($scope.SuaHinhAnh) {
-            UploadService.uploadImage($scope.SuaHinhAnh.name).then(function (response) {
+            UploadService.uploadImage($scope.SuaHinhAnh).then(function (response) {
                 console.log('Hình ảnh đã được tải lên thành công!');
             }, function (error) {
                 console.log('Lỗi khi tải lên hình ảnh: ', error);
             });
         }
-        console.log($scope.SuaHinhAnh);
+
     };
 
 
@@ -153,10 +162,31 @@ app.directive('fileModel', ['$parse', function ($parse) {
         }
     };
 }]);
+app.directive('customOnChange', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var onChangeHandler = scope.$eval(attrs.customOnChange);
+            element.on('change', function (event) {
+                var files = event.target.files;
+                if (files.length > 0) {
+                    var fileName = files[0].name;
+
+                    onChangeHandler(fileName);
+                }
+            });
+            element.on('$destroy', function () {
+                element.off();
+            });
+        }
+    };
+});
+
 
 app.controller('ThemSanPham', ['$scope', 'ProductService', 'UploadService', function ($scope, ProductService, UploadService) {
     $scope.SoLuong = 1;
     $scope.errorState = 0;
+
     $scope.checkMaSanPham = function () {
         if (!$scope.MaSanPham) {
             return 1;
@@ -200,11 +230,21 @@ app.controller('ThemSanPham', ['$scope', 'ProductService', 'UploadService', func
             return 0;
         }
     };
+    $scope.handleFileNameChange = function (fileName) {
+        if (fileName) {
+            $scope.checkInput();
+            return 13;
+        }
+        else {
+            $scope.checkInput();
+            return 0;
+        }
 
-
+    };
 
     $scope.checkInput = function () {
         $scope.errorState = $scope.checkMaSanPham() || $scope.checkTenSanPham() || $scope.checkSoLuong() || $scope.checkLoaiSanPham();
+        console.log($scope.handleFileNameChange());
     };
 
     $scope.ThemSanPhamFunction = function () {
@@ -213,25 +253,27 @@ app.controller('ThemSanPham', ['$scope', 'ProductService', 'UploadService', func
         var now = new Date();
         var NgayGioHienTai = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
 
-        var newProduct = {
-            MaSanPham: $scope.MaSanPham,
-            TenSanPham: $scope.TenSanPham,
-            SoLuong: $scope.SoLuong,
-            NgayThem: NgayGioHienTai,
-            LoaiSanPham: $scope.LoaiSanPham,
-            HinhAnh: $scope.HinhAnh.name,
-            Hang: $scope.Hang,
-            MoTa: $scope.MoTa,
-            GiamGia: $scope.GiamGia
-        };
-        ProductService.addProduct(newProduct).then(function (products) {
-            $scope.products = products;
-        });
-        UploadService.uploadImage($scope.HinhAnh).then(function (response) {
-            console.log('Hình ảnh đã được tải lên thành công!');
-        }, function (error) {
-            console.log('Lỗi khi tải lên hình ảnh: ', error);
-        });
+        // var newProduct = {
+        //     MaSanPham: $scope.MaSanPham,
+        //     TenSanPham: $scope.TenSanPham,
+        //     SoLuong: $scope.SoLuong,
+        //     NgayThem: NgayGioHienTai,
+        //     LoaiSanPham: $scope.LoaiSanPham,
+        //     HinhAnh: $scope.HinhAnh.name,
+        //     Hang: $scope.Hang,
+        //     MoTa: $scope.MoTa,
+        //     GiamGia: $scope.GiamGia
+        // };
+
+        // ProductService.addProduct(newProduct).then(function (products) {
+        //     $scope.products = products;
+        // });
+        // UploadService.uploadImage($scope.HinhAnh).then(function (response) {
+        //     console.log('Hình ảnh đã được tải lên thành công!');
+        // }, function (error) {
+        //     console.log('Lỗi khi tải lên hình ảnh: ', error);
+        // });
 
     };
 }]);
+

@@ -66,7 +66,9 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="" class="form-label">Hình ảnh</label>
-                            <input type="file" file-model="HinhAnh" class="form-control">
+                            <input type="file" custom-on-change="handleFileNameChange" class="form-control">
+                            <span class="text-danger" ng-show="errorState == 13">Bạn chưa chọn ảnh sản phẩm</span>
+
                         </div>
 
 
