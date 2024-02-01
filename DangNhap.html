@@ -27,12 +27,111 @@
 
         .login-form {
             position: absolute;
-            top: 50%;
+            top: 300px;
             left: 50%;
-            transform: translate(70%, -50%);
+            transform: translate(50%, -30%);
             background-color: white;
             padding: 20px;
             border-radius: 5px;
+        }
+
+        .btn_DangNhap {
+            width: 100%;
+            height: 40px;
+            background-color: #ee4d2d;
+            color: white;
+            border: 1px solid #ee4d2d;
+        }
+
+        .login-form {
+            width: 400px;
+        }
+
+        .btn_fb {
+            width: 100%;
+            height: 40px;
+            border: 1px solid gray;
+        }
+
+        .btn_gg {
+            width: 100%;
+            height: 40px;
+            border: 1px solid gray;
+
+        }
+
+        @media (max-width: 1454px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                left: 40%;
+                transform: translate(50%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 1031px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                left: 30%;
+                transform: translate(50%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 893px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                left: 20%;
+                transform: translate(50%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 773px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                left: 10%;
+                transform: translate(50%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 679px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                left: 0%;
+                transform: translate(37%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 559px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                width: 97%;
+                left: 0%;
+                transform: translate(0%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                margin-left: 5px;
+            }
         }
     </style>
     <div class="container">
@@ -50,28 +149,31 @@
     <div class="login-form">
         <form>
             <h5>Đăng nhập</h2>
+                <br>
                 <input type="text" id="username" placeholder="Điền Email/ Số điện thoại/ Tên đăng nhập"
                     class="form-control" name="username"><br>
                 <input type="password" id="password" class="form-control" placeholder="Mật khẩu" name="password"><br>
-                <input type="submit" value="Đăng nhập"><br>
-                <button type="button" class="btn btn-danger">Đăng nhập với Facebook</button><br>
-                <div class="row">
-                    <div class="col-6"> <a href="#">Quên mật khẩu?</a><br>
+                <input type="submit" class="btn_DangNhap" value="Đăng nhập"><br>
+                <div class="row mt-1">
+                    <div class="col-6"> <a href="#" class="text-decoration-none">Quên mật khẩu?</a><br>
                     </div>
-                    <div class="col-6"> <a href="#">Đăng nhập với SMS?</a><br>
+                    <div class="col-6 text-center"> <a href="#" class="text-decoration-none">Đăng nhập với SMS?</a><br>
                     </div>
                 </div>
                 <hr>
-                <div class="row">
-                    <div class="col-6"> <button type="button">Facebook</button><br>
+                <div class="row ">
+                    <div class="col-6"> <button class="btn_fb bg-white" type="button"><i class="bi bi-facebook"></i>
+                            Facebook</button><br>
                     </div>
-                    <div class="col-6"> <button type="button">Google</button>
+                    <div class="col-6"> <button class="btn_gg bg-white" type="button"><i class="bi bi-google"></i>
+                            Google</button>
                         <br>
                     </div>
                 </div>
-                <span>Bạn mới biết đến Shopee?
-                    Đăng ký</span>
-
+                <div class="row pt-4">
+                    <span class="text-center">Bạn mới biết đến Shopee?
+                        <a class=" text-decoration-none text-danger">Đăng ký</a></span>
+                </div>
         </form>
     </div>
     <div class="footer">
