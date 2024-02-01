@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myapp">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <title>{{title}}</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
@@ -16,58 +15,154 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
-<body class="bg-light">
+<body>
+    <style>
+        .responsive-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            padding: 0;
+            margin: 0;
+        }
 
+        .login-form {
+            position: absolute;
+            top: 300px;
+            left: 50%;
+            transform: translate(50%, -30%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
 
+        .btn_DangNhap {
+            width: 100%;
+            height: 40px;
+            background-color: #ee4d2d;
+            color: white;
+            border: 1px solid #ee4d2d;
+        }
 
-    <div class="header position-sticky sticky-header top-0">
-        <div class="container">
-            <!-- navbar  -->
-            <div class="navbar d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <span><a class="text-white text-decoration-none" href="Admin/index_admin.html">Kênh người
-                            bán</a></span>
-                    <div class="hr1 mx-2"></div>
-                    <span><a href="indexDangNhapDangKy.html" class="text-white text-decoration-none">Đăng
-                            nhập</a></span>
-                    <div class="hr1 mx-2"></div>
+        .login-form {
+            width: 400px;
+        }
 
-                    <img class="icon-media mr-2 ml-2" src="assets/facebook.png" alt="" />
-                    <img class="icon-media mr-2" src="assets/instagram.png" alt="" />
+        .btn_fb {
+            width: 100%;
+            height: 40px;
+            border: 1px solid gray;
+        }
 
-                </div>
-                <div class="d-flex align-items-center text_contact">
-                    <img class="icon-media mr-2" src="assets/notif.png" alt="" />
-                    <span class="mr-4" style="padding-left: 5px;">Thông báo</span>
-                    <img class="icon-media mr-2" style="padding-left: 5px;" src="assets/bantuan.png" alt="" />
-                    <span class="mr-4" style="padding-left: 5px;">Gợi ý</span>
-                    <span class="font-weight-bold" style="padding-left: 5px;">Liên hệ: 0869536182</span>
+        .btn_gg {
+            width: 100%;
+            height: 40px;
+            border: 1px solid gray;
 
-                </div>
+        }
+
+        @media (max-width: 1454px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                left: 40%;
+                transform: translate(50%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 1031px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                left: 30%;
+                transform: translate(50%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 893px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                left: 20%;
+                transform: translate(50%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 773px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                left: 10%;
+                transform: translate(50%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 679px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                left: 0%;
+                transform: translate(37%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+            }
+        }
+
+        @media (max-width: 559px) {
+            .login-form {
+                position: absolute;
+                top: 300px;
+                width: 97%;
+                left: 0%;
+                transform: translate(0%, -30%);
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                margin-left: 5px;
+            }
+        }
+    </style>
+    <div class="container">
+
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#"> <img src="Images/logoShopee_DangNhap.png" width="140"
+                    class="d-inline-block align-top" alt="">
+            </a>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active mt-2">
+                        <a class="nav-link" href="#"> <span style="font-weight: 500;font-size: 23px;">
+                                {{title}}
+                    </li>
+
+                </ul>
+
             </div>
-            <!-- input search brand -->
-            <div class="d-flex align-items-center mt-2" ng-controller="BackToHomeWithLoGo">
-                <div class="d-flex align-items-center" ng-click="BackHomeProduct()">
-                    <img class="brand-img mr-0" src="assets/brand.png" alt="" />
-                    <span class="text-brand">Shopee</span>
-                </div>
-                <div class="wrap-navbar-input">
-                    <div class="wrap-search">
-                        <input type="text" class="form-control" placeholder="Shopee bao shop 0Đ - đăng ký ngay!" />
-                        <div class="wrap-icon-s">
-                            <img class="icon-media" src="assets/search.png" alt="" />
-                        </div>
-                    </div>
-
-                </div>
-                <img class="icon-shop" src="assets/shop.png" alt="" ng-click="OpenCart()" />
-            </div>
-        </div>
+        </nav>
     </div>
-    <div class="container-fluid">
+
+    <img class="responsive-image" src="https://down-vn.img.susercontent.com/file/sg-11134004-7rblf-lqn1wqvh870k1f"
+        alt="">
+
+    <div class="login-form">
         <ng-view></ng-view>
     </div>
-
     <div class="footer">
         <div class="container pt-5">
             <p class="title font-weight-bold">
@@ -196,12 +291,8 @@
             </div>
         </div>
     </div>
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="JS/index.js">
 
-</script>
-<script src="SpaIndex/JS/cart.js"></script>
+</body>
+<script src="JS/DangKyDangNhapSPA.js"></script>
 
 </html>

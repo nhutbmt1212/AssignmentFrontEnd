@@ -1,0 +1,25 @@
+<h5>{{title}}</h5>
+
+<input type="text" id="username" placeholder="Điền Email/ Số điện thoại/ Tên đăng nhập" class="form-control mt-3"
+    name="username"><br>
+<input type="submit" class="btn_DangNhap" value="Đăng nhập"><br>
+<div class="row mt-1">
+    <div class="col-6"> <a href="#" class="text-decoration-none">Quên mật khẩu?</a><br>
+    </div>
+    <div class="col-6 text-center"> <a href="#" class="text-decoration-none">Đăng nhập với SMS?</a><br>
+    </div>
+</div>
+<hr>
+<div class="row ">
+    <div class="col-6"> <button class="btn_fb bg-white" type="button"><i class="bi bi-facebook"></i>
+            Facebook</button><br>
+    </div>
+    <div class="col-6"> <button class="btn_gg bg-white" type="button"><i class="bi bi-google"></i>
+            Google</button>
+        <br>
+    </div>
+</div>
+<div class="row pt-4" ng-controller="ChuyenSangDangKy">
+    <span class="text-center">Bạn đã có tài khoản
+        <a class=" text-decoration-none text-danger" ng-click="ChuyenDangNhap()">Đăng Nhập</a></span>
+</div>
