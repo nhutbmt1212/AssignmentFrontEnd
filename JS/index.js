@@ -31,3 +31,11 @@ app.controller('BackToHomeWithLoGo', function ($scope, $location, $anchorScroll)
         $anchorScroll();
     };
 });
+
+
+app.controller('ThemGioHang', function ($scope, $location, $anchorScroll) {
+    $scope.ThemGioHang = function () {
+        $location.path('/Cart');
+        $anchorScroll();
+    };
+});

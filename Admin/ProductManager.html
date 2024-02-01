@@ -27,11 +27,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="" class="form-label">Mã sản phẩm</label>
-                            <input type="text" ng-model="MaSanPham" class="form-control" ng-change="checkInput()">
-                            <span class="text-danger" ng-show="errorState == 1">Vui lòng nhập mã sản phẩm</span>
-                            <span class="text-danger" ng-show="errorState == 2">Mã sản phẩm phải đủ 6 ký tự</span>
-                            <span class="text-danger" ng-show="errorState == 3">Mã sản phẩm không được chứa ký tự đặc
-                                biệt</span>
+                            <input type="text" ng-model="MaSanPham" class="form-control" readonly>
+
                         </div>
 
 
@@ -66,23 +63,33 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="" class="form-label">Hình ảnh</label>
-                            <input type="file" custom-on-change="handleFileNameChange" class="form-control">
-                            <span class="text-danger" ng-show="errorState == 13">Bạn chưa chọn ảnh sản phẩm</span>
+                            <input type="file" file-model="HinhAnh" class="form-control">
 
                         </div>
 
 
                         <div class="col-sm-6">
                             <label for="" class="form-label">Hãng </label>
-                            <input type="text" ng-model="Hang" class="form-control">
+                            <input type="text" ng-model="Hang" class="form-control" ng-change="checkInput()">
+                            <span class="text-danger" ng-show="errorState == 13">Vui lòng nhập hãng</span>
+                            <span class="text-danger" ng-show="errorState == 14">Hãng không được quá 100 ký
+                                tự</span>
+                            <span class="text-danger" ng-show="errorState == 15">Hãng không được chứa số hoặc
+                                ký
+                                tự đặc
+                                biệt</span>
+                            <span class="text-danger" ng-show="errorState == 16">Tên hãng quá ngắn</span>
                         </div>
                         <div class="col-sm-6">
                             <label for="" class="form-label">Mô tả</label>
-                            <input type="text" ng-model="MoTa" class="form-control">
+                            <input type="text" ng-model="MoTa" class="form-control" ng-change="checkInput()">
+                            <span class="text-danger" ng-show="errorState == 17">Vui lòng mô tả</span>
                         </div>
                         <div class="col-sm-6">
                             <label for="" class="form-label">Giảm giá</label>
-                            <input type="number" ng-model="GiamGia" class="form-control">
+                            <input type="number" ng-model="GiamGia" class="form-control" ng-change="checkInput()">
+                            <span class="text-danger" ng-show="errorState == 18">Giảm giá từ 0% -> 100%</span>
+
                         </div>
                     </div>
                 </div>
@@ -192,19 +199,40 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="" class="form-label">Tên sản phẩm</label>
-                                <input type="text" ng-model="TenSanPham" class="form-control">
+                                <input type="text" ng-model="TenSanPham" class="form-control" ng-change="checkInput()">
+                                <span class="text-danger" ng-show="errorState == 4">Vui lòng nhập tên sản phẩm</span>
+                                <span class="text-danger" ng-show="errorState == 5">Tên sản phẩm không được quá 100 ký
+                                    tự</span>
+                                <span class="text-danger" ng-show="errorState == 6">Tên sản phẩm không được chứa số hoặc
+                                    ký
+                                    tự đặc
+                                    biệt</span>
+                                <span class="text-danger" ng-show="errorState == 7">Tên sản phẩm quá ngắn</span>
+
                             </div>
                             <div class="col-sm-6">
                                 <label for="" class="form-label">Số lượng</label>
-                                <input type="number" ng-model="SoLuong" class="form-control">
+                                <input type="number" ng-model="SoLuong" class="form-control" ng-change="checkInput()">
+                                <span class="text-danger" ng-show="errorState == 8">Số lượng sản phẩm phải lớn hơn
+                                    1</span>
                             </div>
                             <div class="col-sm-6">
                                 <label for="" class="form-label">Ngày thêm</label>
-                                <input type="datetime-local" ng-model="NgayThem" class="form-control">
+                                <input type="datetime-local" ng-model="NgayThem" class="form-control" readonly>
                             </div>
                             <div class="col-sm-6">
                                 <label for="" class="form-label">Loại sản phẩm</label>
-                                <input type="text" ng-model="LoaiSanPham" class="form-control">
+                                <input type="text" ng-model="LoaiSanPham" class="form-control" ng-change="checkInput()">
+                                <span class="text-danger" ng-show="errorState == 9">Vui lòng nhập loại sản phẩm</span>
+                                <span class="text-danger" ng-show="errorState == 10">Loại sản phẩm không được quá 100 ký
+                                    tự</span>
+                                <span class="text-danger" ng-show="errorState == 11">Loại sản phẩm không được chứa số
+                                    hoặc
+                                    ký
+                                    tự đặc
+                                    biệt</span>
+                                <span class="text-danger" ng-show="errorState == 12">Loại sản phẩm quá ngắn</span>
+
                             </div>
                             <div class="col-sm-6">
                                 <label for="" class="form-label">Hình ảnh</label>
@@ -212,15 +240,25 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="" class="form-label">Hãng </label>
-                                <input type="text" ng-model="Hang" class="form-control">
+                                <input type="text" ng-model="Hang" class="form-control" ng-change="checkInput()">
+                                <span class="text-danger" ng-show="errorState == 13">Vui lòng nhập hãng</span>
+                                <span class="text-danger" ng-show="errorState == 14">Hãng không được quá 100 ký
+                                    tự</span>
+                                <span class="text-danger" ng-show="errorState == 15">Hãng không được chứa số hoặc
+                                    ký
+                                    tự đặc
+                                    biệt</span>
                             </div>
                             <div class="col-sm-6">
                                 <label for="" class="form-label">Mô tả</label>
-                                <input type="text" ng-model="MoTa" class="form-control">
+                                <input type="text" ng-model="MoTa" class="form-control" ng-change="checkInput()">
+                                <span class="text-danger" ng-show="errorState == 17">Vui lòng mô tả</span>
+
                             </div>
                             <div class="col-sm-6">
                                 <label for="" class="form-label">Giảm giá</label>
-                                <input type="number" ng-model="GiamGia" class="form-control">
+                                <input type="number" ng-model="GiamGia" class="form-control" ng-change="checkInput()">
+                                <span class="text-danger" ng-show="errorState == 18">Giảm giá từ 0% -> 100%</span>
                             </div>
                         </div>
                     </div>
@@ -229,7 +267,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                         <button type="button" class="btn btn-success" ng-click="SuaSanPhamFunction()"
-                            data-bs-dismiss="modal">Sửa
+                            data-bs-dismiss="modal" ng-disabled="errorState != 0">Sửa
                             sản phẩm</button>
 
                     </div>

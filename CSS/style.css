@@ -72,12 +72,12 @@
 
 .product-card {
   width: 100%;
-  transition: transform 0.3s ease; /* Simplified transition property */
+  /* transition: transform 0.3s ease; Simplified transition property */
 }
 
 #total_card_product .product-card:hover {
   border: 1px solid red !important;
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
 }
 
 /* Reset z-index for elements after the sticky header */

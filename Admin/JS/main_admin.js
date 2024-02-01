@@ -89,7 +89,7 @@ app.controller('ProductController', ['$scope', 'ProductService', 'UploadService'
             });
         }
     };
-
+    $scope.errorState = 0;
     $scope.setSuaSanPham = function (product) {
         var ngayThemDate = new Date(product.NgayThem);
         $scope.MaSanPham = product.MaSanPham;
@@ -102,6 +102,68 @@ app.controller('ProductController', ['$scope', 'ProductService', 'UploadService'
         $scope.MoTa = product.MoTa;
         $scope.GiamGia = product.GiamGia;
     };
+    $scope.checkTenSanPham = function () {
+        if (!$scope.TenSanPham) {
+            return 4;
+        } else if ($scope.TenSanPham.length > 100) {
+            return 5;
+        } else if (/[^\p{L}\s\p{P}]/u.test($scope.TenSanPham)) {
+            return 6;
+        } else if ($scope.TenSanPham.length < 2) {
+            return 7;
+        } else {
+            return 0;
+        }
+    };
+    $scope.checkSoLuong = function () {
+        return $scope.SoLuong < 1 ? 8 : 0;
+    };
+    $scope.checkLoaiSanPham = function () {
+        if (!$scope.LoaiSanPham) {
+            return 9;
+        } else if ($scope.LoaiSanPham.length > 100) {
+            return 10;
+        } else if (/[^\p{L}\s\p{P}]/u.test($scope.LoaiSanPham)) {
+            return 11;
+        } else if ($scope.LoaiSanPham.length < 2) {
+            return 12;
+        } else {
+            return 0;
+        }
+    };
+    $scope.checkHang = function () {
+        if (!$scope.Hang) {
+            return 13;
+        } else if ($scope.Hang.length > 100) {
+            return 14;
+        } else if (/[^\p{L}\s\p{P}]/u.test($scope.Hang)) {
+            return 15;
+        } else if ($scope.Hang.length < 2) {
+            return 16;
+        } else {
+            return 0;
+        }
+    };
+    $scope.CheckMoTa = function () {
+        if (!$scope.MoTa) {
+            return 17;
+        }
+        else {
+            return 0;
+        }
+    }
+    $scope.CheckGiamGia = function () {
+        if ($scope.GiamGia < 0 || $scope.GiamGia > 100) {
+            return 18;
+        }
+        else {
+            return 0;
+        }
+    }
+    $scope.checkInput = function () {
+        $scope.errorState = $scope.checkTenSanPham() || $scope.checkSoLuong() || $scope.checkLoaiSanPham() || $scope.checkHang() || $scope.CheckMoTa() || $scope.CheckGiamGia();
+    };
+
 
     $scope.SuaSanPhamFunction = function () {
         var now = $scope.NgayThem;
@@ -128,7 +190,6 @@ app.controller('ProductController', ['$scope', 'ProductService', 'UploadService'
                 console.log('Lỗi khi tải lên hình ảnh: ', error);
             });
         }
-
     };
 
 
@@ -181,23 +242,22 @@ app.directive('customOnChange', function () {
         }
     };
 });
+function generateRandomString() {
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var result = '';
+    for (var i = 0; i < 6; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
 
 
 app.controller('ThemSanPham', ['$scope', 'ProductService', 'UploadService', function ($scope, ProductService, UploadService) {
     $scope.SoLuong = 1;
     $scope.errorState = 0;
+    $scope.GiamGia = 0;
+    $scope.MaSanPham = generateRandomString();
 
-    $scope.checkMaSanPham = function () {
-        if (!$scope.MaSanPham) {
-            return 1;
-        } else if ($scope.MaSanPham.length !== 6) {
-            return 2;
-        } else if (!/^[a-zA-Z0-9]*$/.test($scope.MaSanPham)) {
-            return 3;
-        } else {
-            return 0;
-        }
-    };
 
     $scope.checkTenSanPham = function () {
         if (!$scope.TenSanPham) {
@@ -230,49 +290,75 @@ app.controller('ThemSanPham', ['$scope', 'ProductService', 'UploadService', func
             return 0;
         }
     };
-    $scope.handleFileNameChange = function (fileName) {
-        if (fileName) {
-            $scope.checkInput();
+
+    $scope.checkHang = function () {
+        if (!$scope.Hang) {
             return 13;
-        }
-        else {
-            $scope.checkInput();
+        } else if ($scope.Hang.length > 100) {
+            return 14;
+        } else if (/[^\p{L}\s\p{P}]/u.test($scope.Hang)) {
+            return 15;
+        } else if ($scope.Hang.length < 2) {
+            return 16;
+        } else {
             return 0;
         }
-
     };
 
+    $scope.CheckMoTa = function () {
+        if (!$scope.MoTa) {
+            return 17;
+        }
+        else {
+            return 0;
+        }
+    }
+    $scope.CheckGiamGia = function () {
+        if ($scope.GiamGia < 0 || $scope.GiamGia > 100) {
+            return 18;
+        }
+        else {
+            return 0;
+        }
+    }
+
     $scope.checkInput = function () {
-        $scope.errorState = $scope.checkMaSanPham() || $scope.checkTenSanPham() || $scope.checkSoLuong() || $scope.checkLoaiSanPham();
-        console.log($scope.handleFileNameChange());
+        $scope.errorState = $scope.checkTenSanPham() || $scope.checkSoLuong() || $scope.checkLoaiSanPham() || $scope.checkHang() || $scope.CheckMoTa() || $scope.CheckGiamGia();
     };
 
     $scope.ThemSanPhamFunction = function () {
 
+        if ($scope.HinhAnh) {
+            var now = new Date();
+            var NgayGioHienTai = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
 
-        var now = new Date();
-        var NgayGioHienTai = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+            var newProduct = {
+                MaSanPham: $scope.MaSanPham,
+                TenSanPham: $scope.TenSanPham,
+                SoLuong: $scope.SoLuong,
+                NgayThem: NgayGioHienTai,
+                LoaiSanPham: $scope.LoaiSanPham,
+                HinhAnh: $scope.HinhAnh.name,
+                Hang: $scope.Hang,
+                MoTa: $scope.MoTa,
+                GiamGia: $scope.GiamGia
+            };
 
-        // var newProduct = {
-        //     MaSanPham: $scope.MaSanPham,
-        //     TenSanPham: $scope.TenSanPham,
-        //     SoLuong: $scope.SoLuong,
-        //     NgayThem: NgayGioHienTai,
-        //     LoaiSanPham: $scope.LoaiSanPham,
-        //     HinhAnh: $scope.HinhAnh.name,
-        //     Hang: $scope.Hang,
-        //     MoTa: $scope.MoTa,
-        //     GiamGia: $scope.GiamGia
-        // };
+            ProductService.addProduct(newProduct).then(function (products) {
+                $scope.products = products;
+            });
+            UploadService.uploadImage($scope.HinhAnh).then(function (response) {
+                console.log('Hình ảnh đã được tải lên thành công!');
+            }, function (error) {
+                console.log('Lỗi khi tải lên hình ảnh: ', error);
+            });
+        }
+        else {
+            alert('Bạn chưa chọn ảnh. Vui lòng thử lại');
+        }
 
-        // ProductService.addProduct(newProduct).then(function (products) {
-        //     $scope.products = products;
-        // });
-        // UploadService.uploadImage($scope.HinhAnh).then(function (response) {
-        //     console.log('Hình ảnh đã được tải lên thành công!');
-        // }, function (error) {
-        //     console.log('Lỗi khi tải lên hình ảnh: ', error);
-        // });
+
+
 
     };
 }]);
