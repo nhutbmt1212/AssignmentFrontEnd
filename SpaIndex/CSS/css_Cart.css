@@ -25,6 +25,9 @@
   .text_muc {
     font-size: 13px;
   }
+  .text_cart_total {
+    font-size: 15px;
+  }
 }
 @media (max-width: 992px) {
   .cart-row {
@@ -35,6 +38,12 @@
   }
   .text_muc {
     font-size: 14px;
+  }
+  .text_cart_total {
+    font-size: 13px;
+  }
+  .div_checkbox {
+    padding-top: 12px !important;
   }
 }
 @media (max-width: 767px) {
@@ -55,6 +64,21 @@
 
   .title_cart {
     display: none !important;
+  }
+  .text_thanhtien {
+    color: #ee4d2d;
+    font-size: 18px !important;
+  }
+  .div_thanhtien {
+    padding-top: 15px;
+  }
+  .div_checkbox {
+    padding-top: 20px !important;
+  }
+}
+@media (max-width: 575px) {
+  .div_thanhtien {
+    padding-top: 6px;
   }
 }
 .btn_muahang {
